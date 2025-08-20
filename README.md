@@ -39,7 +39,7 @@ flowchart TD
     
     subgraph "Processing Layer"
         C1["Speech-to-Text<br/>(Hugging Face)"]
-        C2["Image Analysis<br/>(Gemini Vision)"]
+        C2["Image Analysis<br/>(Gemini Vision/OCR)"]
         C3["Log Parsing<br/>(Gemini API)"]
         C4["Web Search<br/>(SerpAPI)"]
         B --> C1
