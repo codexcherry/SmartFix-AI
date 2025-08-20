@@ -28,40 +28,53 @@ SmartFix-AI is a cutting-edge intelligent troubleshooting system that combines m
 ### System Overview
 
 ```mermaid
-graph TB
-    subgraph "Frontend Layer"
-        A[React Dashboard] --> B[Material-UI Components]
-        B --> C[API Client]
+flowchart TD
+    subgraph "Input Layer"
+        A1["Text Query"] --> B
+        A2["Voice Input"] --> B
+        A3["Image Upload"] --> B
+        A4["Log Files"] --> B
+        B["Input Preprocessing"]
     end
     
-    subgraph "Backend Layer"
-        D[FastAPI Server] --> E[Brain Core System]
-        E --> F[AI Services]
-        E --> G[External APIs]
-        E --> H[Database Layer]
+    subgraph "Processing Layer"
+        C1["Speech-to-Text<br/>(Hugging Face)"]
+        C2["Image Analysis<br/>(Gemini Vision)"]
+        C3["Log Parsing<br/>(Gemini API)"]
+        C4["Web Search<br/>(SerpAPI)"]
+        B --> C1
+        B --> C2
+        B --> C3
+        B --> C4
     end
     
-    subgraph "AI Processing Pipeline"
-        F --> I[HuggingFace Service]
-        F --> J[Gemini Service]
-        F --> K[OCR Service]
-        F --> L[Brain Memory]
+    subgraph "AI Reasoning Engine"
+        D["Fusion Layer"]
+        E["Root Cause Analysis<br/>(Gemini API)"]
+        F["Solution Ranking<br/>(Hugging Face)"]
+        C1 --> D
+        C2 --> D
+        C3 --> D
+        C4 --> D
+        D --> E
+        E --> F
     end
     
-    subgraph "External Services"
-        G --> M[SerpAPI]
-        G --> N[Twilio]
-        G --> O[Device Detector]
+    subgraph "Output Layer"
+        G1["UI Display"]
+        G2["SMS/WhatsApp<br/>(Twilio)"]
+        G3["Voice Response"]
+        F --> G1
+        F --> G2
+        F --> G3
     end
     
-    subgraph "Data Storage"
-        H --> P[JSON Database]
-        H --> Q[Brain Memory DB]
+    subgraph "Storage"
+        H["JSON Database"]
+        F --> H
+        H --> D
     end
-    
-    C --> D
 ```
-
 ### Core Components
 
 #### 1. **Brain Core System** 🧠
