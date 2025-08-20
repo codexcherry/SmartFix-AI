@@ -31,7 +31,7 @@ SmartFix-AI is a cutting-edge intelligent troubleshooting system that combines m
 flowchart TD
     subgraph "Input Layer"
         A1["Text Query"] --> B
-        A2["Voice Input"] --> B
+        A2["Virtual Assistant"] --> B
         A3["Image Upload"] --> B
         A4["Log Files"] --> B
         B["Input Preprocessing"]
@@ -48,31 +48,48 @@ flowchart TD
         B --> C4
     end
     
-    subgraph "AI Reasoning Engine"
+    subgraph "Intelligent Brain Core"
         D["Fusion Layer"]
         E["Root Cause Analysis<br/>(Gemini API)"]
         F["Solution Ranking<br/>(Hugging Face)"]
+        G["Learning System"]
         C1 --> D
         C2 --> D
         C3 --> D
         C4 --> D
         D --> E
         E --> F
+        F --> G
+        G --> D
+    end
+    
+    subgraph "Device Analytics"
+        H1["Health Monitoring"]
+        H2["Performance Metrics"]
+        H3["Security Analysis"]
+        H4["Hardware Diagnostics"]
+        F --> H1
+        F --> H2
+        F --> H3
+        F --> H4
     end
     
     subgraph "Output Layer"
-        G1["UI Display"]
-        G2["SMS/WhatsApp<br/>(Twilio)"]
-        G3["Voice Response"]
-        F --> G1
-        F --> G2
-        F --> G3
+        I1["UI Display"]
+        I2["SMS/WhatsApp<br/>(Twilio)"]
+        I3["Virtual Assistant Response"]
+        F --> I1
+        F --> I2
+        F --> I3
     end
     
     subgraph "Storage"
-        H["JSON Database"]
-        F --> H
-        H --> D
+        J["JSON Database"]
+        K["Brain Memory DB"]
+        F --> J
+        G --> K
+        J --> D
+        K --> D
     end
 ```
 ### Core Components
