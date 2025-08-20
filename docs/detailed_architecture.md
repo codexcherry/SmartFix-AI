@@ -7,50 +7,172 @@ SmartFix-AI is built as a microservices-based architecture with clear separation
 ### High-Level Architecture
 
 ```mermaid
-graph TB
+flowchart TD
+    %% Client Layer
     subgraph "Client Layer"
         A[Web Browser]
-        B[Mobile App]
+        B[Mobile App] 
         C[API Clients]
     end
     
+    %% Presentation Layer
     subgraph "Presentation Layer"
         D[React Frontend]
         E[API Gateway]
     end
     
+    %% Input Processing
+    subgraph "Input Layer"
+        A1["Text Query"] 
+        A2["Voice Input"] 
+        A3["Image Upload"] 
+        A4["Log Files"]
+        B1["Input Preprocessing"]
+    end
+    
+    %% Application Layer
     subgraph "Application Layer"
         F[FastAPI Backend]
         G[Brain Core System]
         H[Virtual Assistant]
     end
     
+    %% Processing Components
+    subgraph "Processing Layer"
+        C1["Speech-to-Text<br/>(Hugging Face)"]
+        C2["Image Analysis<br/>(Gemini Vision)"]
+        C3["Log Parsing<br/>(Gemini API)"]
+        C4["Web Search<br/>(SerpAPI)"]
+    end
+    
+    %% AI Reasoning Engine
+    subgraph "AI Reasoning Engine"
+        D1["Fusion Layer"]
+        E1["Root Cause Analysis<br/>(Gemini API)"]
+        F1["Solution Ranking<br/>(Hugging Face)"]
+    end
+    
+    %% Service Layer
     subgraph "Service Layer"
         I[AI Services]
         J[External APIs]
         K[Device Analytics]
     end
     
+    %% Output Components
+    subgraph "Output Layer"
+        G1["UI Display"]
+        G2["SMS/WhatsApp<br/>(Twilio)"]
+        G3["Voice Response"]
+    end
+    
+    %% Data Layer
     subgraph "Data Layer"
         L[Primary Database]
         M[Brain Memory DB]
         N[File Storage]
+        H1["JSON Database"]
     end
     
+    %% Client to Presentation connections
     A --> D
     B --> E
     C --> E
+    
+    %% Presentation to Application connections
     D --> F
     E --> F
+    
+    %% Input flow
+    A --> A1
+    B --> A2
+    C --> A3
+    D --> A4
+    A1 --> B1
+    A2 --> B1
+    A3 --> B1
+    A4 --> B1
+    
+    %% Application layer connections
     F --> G
     F --> H
+    B1 --> F
+    
+    %% Processing flow
+    B1 --> C1
+    B1 --> C2
+    B1 --> C3
+    B1 --> C4
+    
+    %% AI Reasoning flow
+    C1 --> D1
+    C2 --> D1
+    C3 --> D1
+    C4 --> D1
+    D1 --> E1
+    E1 --> F1
+    
+    %% Service layer connections
     G --> I
     G --> J
     H --> I
     K --> J
+    F1 --> I
+    I --> C1
+    I --> C2
+    I --> C3
+    J --> C4
+    
+    %% Output connections
+    F1 --> G1
+    F1 --> G2
+    F1 --> G3
+    G1 --> D
+    G2 --> J
+    G3 --> D
+    
+    %% Data layer connections
     F --> L
     G --> M
     I --> N
+    F1 --> H1
+    H1 --> D1
+    M --> G
+    L --> F
+    N --> I
+    
+    %% Brain Core integration
+    G --> E1
+    G --> D1
+    H --> F1
+    
+    %% Cross-layer data flow
+    K --> M
+    H1 --> M
+    
+    %% Styling with grey tones and black background
+    classDef clientLayer fill:#4a4a4a,stroke:#666,stroke-width:2px,color:#fff
+    classDef presentationLayer fill:#5a5a5a,stroke:#777,stroke-width:2px,color:#fff
+    classDef inputLayer fill:#3a3a3a,stroke:#555,stroke-width:2px,color:#fff
+    classDef applicationLayer fill:#6a6a6a,stroke:#888,stroke-width:2px,color:#fff
+    classDef processingLayer fill:#454545,stroke:#666,stroke-width:2px,color:#fff
+    classDef reasoningLayer fill:#555555,stroke:#777,stroke-width:2px,color:#fff
+    classDef serviceLayer fill:#404040,stroke:#666,stroke-width:2px,color:#fff
+    classDef outputLayer fill:#505050,stroke:#777,stroke-width:2px,color:#fff
+    classDef dataLayer fill:#353535,stroke:#555,stroke-width:2px,color:#fff
+    
+    %% Set black background for the entire diagram
+    %%{init: {'theme':'base', 'themeVariables': {'primaryColor': '#333', 'primaryTextColor': '#fff', 'primaryBorderColor': '#666', 'lineColor': '#777', 'background': '#000000'}}}%%
+    
+    class A,B,C clientLayer
+    class D,E presentationLayer
+    class A1,A2,A3,A4,B1 inputLayer
+    class F,G,H applicationLayer
+    class C1,C2,C3,C4 processingLayer
+    class D1,E1,F1 reasoningLayer
+    class I,J,K serviceLayer
+    class G1,G2,G3 outputLayer
+    class L,M,N,H1 dataLayer
 ```
 
 ## Core Components
@@ -518,3 +640,4 @@ services:
    - Global distribution
 
 This detailed architecture provides a comprehensive technical foundation for the SmartFix-AI system, ensuring scalability, maintainability, and extensibility for future growth and enhancements.
+
